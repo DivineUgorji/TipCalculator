@@ -53,7 +53,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvTipLabel" />
 
     <EditText
-        android:id="@+id/editTextNumberDecimal"
+        android:id="@+id/etBase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -63,17 +63,18 @@
         app:layout_constraintStart_toEndOf="@+id/textView" />
 
     <SeekBar
-        android:id="@+id/seekBar"
+        android:id="@+id/seekBarTip"
         android:layout_width="200sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:max="30"
         app:layout_constraintBottom_toBottomOf="@+id/tipPercent"
         app:layout_constraintStart_toEndOf="@+id/tipPercent"
         app:layout_constraintTop_toTopOf="@+id/tipPercent"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/tipAmount"
+        android:id="@+id/tvTipAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -83,7 +84,7 @@
         tools:text="3.76" />
 
     <TextView
-        android:id="@+id/totalAmount"
+        android:id="@+id/tvTotalAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
