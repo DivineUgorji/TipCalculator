@@ -1,26 +1,35 @@
 package com.example.tipcalculator
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.widget.SeekBar
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 private const val INITIAL_TIP_PERCENT = 15
+private const val DEFAULT_TOTAL_AMOUNT = 0.00
+private const val DEFAULT_TIP_AMOUNT = 0.00
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         seekBarTip.progress = INITIAL_TIP_PERCENT
         tipPercent.text = "$INITIAL_TIP_PERCENT%"
+        tvTotalAmount.text = DEFAULT_TOTAL_AMOUNT.toString()
+        tvTipAmount.text = DEFAULT_TIP_AMOUNT.toString()
+
 
         seekBarTip.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
 
             override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
-                tipPercent.text = "$progress"
+                var min: Int = 10
+                tipPercent.text = "$progress%"
+                updateTipDescription(progress)
                 computeTipAndTotal()
             }
 
@@ -40,10 +49,23 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    private fun updateTipDescription(tipPercent: Int) {
+        val tipDescription: String
+        when(tipPercent){
+          in 1..9 -> tipDescription = "Poor"
+            in 9..14 -> tipDescription = "Acceptable"
+            in 14..19 ->tipDescription = "Good"
+            in 19..24 ->tipDescription = "Great"
+            else -> tipDescription = "Amazing"
+
+        }
+
+    }
+
     private fun computeTipAndTotal() {
         if (etBase.text.isEmpty()){
-            tvTipAmount.text = ""
-            tvTotalAmount.text = ""
+            tvTipAmount.text = DEFAULT_TIP_AMOUNT.toString()
+            tvTotalAmount.text = DEFAULT_TOTAL_AMOUNT.toString()
             return
         }
         val baseAmount = etBase.text.toString().toDouble()
@@ -54,5 +76,19 @@ class MainActivity : AppCompatActivity() {
         tvTipAmount.text = "%.2f".format(tipAmount)
         tvTotalAmount.text = "%.2f".format(totalAmount)
 
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) hideSystemUI()
+    }
+
+    private fun hideSystemUI() {
+        // Enables regular immersive mode.
+        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
+        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
     }
 }
