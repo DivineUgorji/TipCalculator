@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         seekBarTip.progress = INITIAL_TIP_PERCENT
-        tipPercent.text = "$INITIAL_TIP_PERCENT%"
+        tvTipPercent.text = "$INITIAL_TIP_PERCENT%"
         tvTotalAmount.text = DEFAULT_TOTAL_AMOUNT.toString()
         tvTipAmount.text = DEFAULT_TIP_AMOUNT.toString()
 
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
                 var min: Int = 10
-                tipPercent.text = "$progress%"
+                tvTipPercent.text = "$progress%"
                 updateTipDescription(progress)
                 computeTipAndTotal()
             }
