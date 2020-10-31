@@ -109,12 +109,12 @@
         android:id="@+id/tvTipPercent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="268dp"
         android:textColor="@android:color/background_light"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/etBase"
         app:layout_constraintTop_toBottomOf="@+id/etBase"
         tools:text="15%" />
 
@@ -133,7 +133,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="12dp"
         android:text="TIP"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
@@ -157,35 +156,64 @@
         tools:text="3.91" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/tvSplit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="SPLIT"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="68dp"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/tipLabel"
-        app:layout_constraintTop_toBottomOf="@+id/tipLabel" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tipLabel"
+        tools:text="SPLIT BY 2" />
 
     <SeekBar
-        android:id="@+id/seekBar2"
+        android:id="@+id/seekBarSplit"
         android:layout_width="200dp"
         android:layout_height="20dp"
         android:layout_marginStart="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView7"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="@+id/textView7" />
+        app:layout_constraintBottom_toBottomOf="@+id/tvSplit"
+        app:layout_constraintStart_toEndOf="@+id/tvSplit"
+        app:layout_constraintTop_toTopOf="@+id/tvSplit"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvSpliLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="184dp"
+        android:layout_marginStart="64dp"
         android:layout_marginTop="60dp"
-        android:text="TextView"
+        android:text="PER PERSON"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tvSplit"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSplit" />
+
+    <TextView
+        android:id="@+id/tvSplitResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvSpliLabel"
+        app:layout_constraintStart_toEndOf="@+id/tvSpliLabel"
+        app:layout_constraintTop_toTopOf="@+id/tvSpliLabel"
+        tools:text="9.20" />
+
+    <TextView
+        android:id="@+id/addon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="661dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
