@@ -4,83 +4,95 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_background"
+    android:background="@android:color/white"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/roboto"
-        android:text="YOUR BILL + TIP"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
+
+    <View
+        android:id="@+id/conten_view"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/bg_header"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvTotalLabel"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="$"
-        android:textColor="@android:color/background_light"
-        android:textSize="35sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toStartOf="@+id/tvTotalAmount" />
-
-
-
-    <TextView
-        android:id="@+id/tvTotalAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_slab_bold"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@android:color/background_light"
-        android:textSize="70sp"
+        android:layout_marginTop="70dp"
+        android:fontFamily="@font/roboto"
+        android:text="YOUR BILL + TIP"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="72.44" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="32dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="00"
-        android:textColor="@android:color/background_light"
-        android:textSize="35sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintStart_toEndOf="@+id/tvTotalAmount" />
+        <TextView
+            android:id="@+id/tvTotalLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="32dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="$"
+            android:textColor="@android:color/background_light"
+            android:textSize="35sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toStartOf="@+id/tvTotalAmount" />
+
+
+        <TextView
+            android:id="@+id/tvTotalAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_slab_bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@android:color/background_light"
+            android:textSize="70sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="72.44" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="32dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="00"
+            android:textColor="@android:color/background_light"
+            android:textSize="35sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintStart_toEndOf="@+id/tvTotalAmount" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="164dp" />
+        app:layout_constraintGuide_begin="196dp" />
 
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="70dp"
         android:fontFamily="@font/roboto_mono"
         android:text="ENTER BILL AMOUNT"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#FFFFFF"
+        android:textColor="	#4c048c"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/etBase"
+        app:layout_constraintHorizontal_bias="0.587"
         app:layout_constraintStart_toStartOf="@+id/etBase"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
@@ -89,19 +101,19 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/et_design"
         android:ems="10"
         android:foregroundGravity="center"
         android:gravity="center_horizontal"
         android:inputType="numberDecimal"
-        android:textColor="#FFFFFF"
+        android:textColor="	#4c048c"
         android:textColorHint="#FFFFFF"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -111,7 +123,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="268dp"
-        android:textColor="@android:color/background_light"
+        android:textColor="	#4c048c"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/etBase"
@@ -122,33 +134,35 @@
         android:id="@+id/seekBarTip"
         android:layout_width="200dp"
         android:layout_height="20dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="60dp"
         android:max="30"
         app:layout_constraintBottom_toBottomOf="@+id/tvTipPercent"
         app:layout_constraintStart_toEndOf="@+id/tvTipPercent"
-        app:layout_constraintTop_toTopOf="@+id/tvTipPercent" />
+        app:layout_constraintTop_toTopOf="@+id/tvTipPercent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tipLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="4dp"
         android:text="TIP"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FFFFFF"
+        android:textColor="	#4c048c"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/tvTipPercent"
         app:layout_constraintTop_toBottomOf="@+id/tvTipPercent" />
 
     <TextView
-        android:inputType="numberDecimal"
         android:id="@+id/tvTipAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
+        android:inputType="numberDecimal"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FFFFFF"
+        android:textColor="	#4c048c"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/tipLabel"
@@ -156,64 +170,16 @@
         tools:text="3.91" />
 
     <TextView
-        android:id="@+id/tvSplit"
+        android:id="@+id/tvTipDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="68dp"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/tipLabel"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tipLabel"
-        tools:text="SPLIT BY 2" />
-
-    <SeekBar
-        android:id="@+id/seekBarSplit"
-        android:layout_width="200dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvSplit"
-        app:layout_constraintStart_toEndOf="@+id/tvSplit"
-        app:layout_constraintTop_toTopOf="@+id/tvSplit"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/tvSpliLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="60dp"
-        android:text="PER PERSON"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/tvSplit"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSplit" />
-
-    <TextView
-        android:id="@+id/tvSplitResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/tvSpliLabel"
-        app:layout_constraintStart_toEndOf="@+id/tvSpliLabel"
-        app:layout_constraintTop_toTopOf="@+id/tvSpliLabel"
-        tools:text="9.20" />
-
-    <TextView
-        android:id="@+id/addon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="661dp" />
+        android:layout_marginTop="8dp"
+        android:text="Acceptable"
+        android:textColor="	#4c048c"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/seekBarTip"
+        app:layout_constraintStart_toStartOf="@+id/seekBarTip"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarTip" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

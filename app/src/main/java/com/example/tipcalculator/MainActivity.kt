@@ -1,17 +1,18 @@
 package com.example.tipcalculator
 
+import android.animation.ArgbEvaluator
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
 
 private const val INITIAL_TIP_PERCENT = 15
 private const val DEFAULT_TOTAL_AMOUNT = 0.00
 private const val DEFAULT_TIP_AMOUNT = 0.00
-private const val DEFAULT_SPLIT_VALUE = 2
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,9 +23,9 @@ class MainActivity : AppCompatActivity() {
 
         seekBarTip.progress = INITIAL_TIP_PERCENT
         tvTipPercent.text = "$INITIAL_TIP_PERCENT%"
+        updateTipDescription(INITIAL_TIP_PERCENT)
         tvTotalAmount.text = DEFAULT_TOTAL_AMOUNT.toString()
         tvTipAmount.text = DEFAULT_TIP_AMOUNT.toString()
-        seekBarSplit.progress = DEFAULT_SPLIT_VALUE
 
         seekBarTip.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
 
@@ -49,32 +50,23 @@ class MainActivity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         })
 
-
-        seekBarSplit.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
-
-            override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
-                tvSplitResult.text = "$progress"
-
-            }
-
-            override fun onStartTrackingTouch(p0: SeekBar?) {}
-
-            override fun onStopTrackingTouch(p0: SeekBar?) {}
-        })
-
     }
 
     private fun updateTipDescription(tipPercent: Int) {
         val tipDescription: String
         when(tipPercent){
-          in 1..9 -> tipDescription = "Poor"
+          in 0..9 -> tipDescription = "Poor"
             in 9..14 -> tipDescription = "Acceptable"
             in 14..19 ->tipDescription = "Good"
             in 19..24 ->tipDescription = "Great"
             else -> tipDescription = "Amazing"
-
         }
+        tvTipDescription.text = tipDescription
+        val color = ArgbEvaluator().evaluate(tipPercent.toFloat() / seekBarTip.max,
+            ContextCompat.getColor(this,R.color.worstTip), ContextCompat.getColor(this, R.color.bestTip)
+        )as Int
 
+        tvTipDescription.setTextColor(color)
     }
 
     private fun computeTipAndTotal() {
@@ -86,7 +78,7 @@ class MainActivity : AppCompatActivity() {
         val baseAmount = etBase.text.toString().toDouble()
         val tipPercent = seekBarTip.progress
         val tipAmount  = baseAmount * tipPercent / 100
-        val totalAmount = baseAmount + tipPercent
+        val totalAmount = baseAmount + tipAmount
 
 
         tvTipAmount.text = "%.2f".format(tipAmount)
