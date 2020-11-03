@@ -83,10 +83,10 @@ class MainActivity : AppCompatActivity() {
     }
 
       fun computeSplitResult() {
-        val mySplit = splitSeekBar.progress
-         val totalSplitResult = totalAmount / mySplit
+        //val mySplit = splitSeekBar.progress
+        // val totalSplitResult = totalAmount / mySplit
 
-         tvSplitResult.text = "%.2f".format(totalSplitResult)
+        // tvSplitResult.text = "%.2f".format(totalSplitResult)
 
 
     }
@@ -123,5 +123,11 @@ class MainActivity : AppCompatActivity() {
         tvTipAmount.text = "%.2f".format(tipAmount)
         tvTotalAmount.text = "%.2f".format(totalAmount)
 
-    }
+         val mySplit = splitSeekBar.progress
+         val totalSplitResult = totalAmount / mySplit
+
+         tvSplitResult.text = "%.2f".format(totalSplitResult)
+
+
+     }
 }
