@@ -13,19 +13,38 @@ import kotlinx.android.synthetic.main.activity_main.*
 private const val INITIAL_TIP_PERCENT = 15
 private const val DEFAULT_TOTAL_AMOUNT = 0.00
 private const val DEFAULT_TIP_AMOUNT = 0.00
+private const val DEFAULT_SPLIT_AMOUNT = 0.00
+private const val INITIAL_TIP_VALUE = 2
+
 
 class MainActivity : AppCompatActivity() {
 
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) hideSystemUI()
+    }
+
+    private fun hideSystemUI() {
+        // Enables regular immersive mode.
+        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
+        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         seekBarTip.progress = INITIAL_TIP_PERCENT
         tvTipPercent.text = "$INITIAL_TIP_PERCENT%"
+        tvSplitSeekBar.text = "SPLIT BY $INITIAL_TIP_VALUE"
         updateTipDescription(INITIAL_TIP_PERCENT)
         tvTotalAmount.text = DEFAULT_TOTAL_AMOUNT.toString()
         tvTipAmount.text = DEFAULT_TIP_AMOUNT.toString()
+        tvSplitResult.text = DEFAULT_SPLIT_AMOUNT.toString()
 
         seekBarTip.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
 
@@ -33,6 +52,17 @@ class MainActivity : AppCompatActivity() {
                 tvTipPercent.text = "$progress%"
                 updateTipDescription(progress)
                 computeTipAndTotal()
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {}
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {}
+        })
+
+        splitSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
+                tvSplitSeekBar.text = "SPLIT BY $progress"
+                computeSplitResult()
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {}
@@ -49,6 +79,15 @@ class MainActivity : AppCompatActivity() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         })
+
+    }
+
+      fun computeSplitResult() {
+        val mySplit = splitSeekBar.progress
+         val totalSplitResult = totalAmount / mySplit
+
+         tvSplitResult.text = "%.2f".format(totalSplitResult)
+
 
     }
 
@@ -69,35 +108,20 @@ class MainActivity : AppCompatActivity() {
         tvTipDescription.setTextColor(color)
     }
 
-    private fun computeTipAndTotal() {
+     private fun computeTipAndTotal() {
         if (etBase.text.isEmpty()){
             tvTipAmount.text = DEFAULT_TIP_AMOUNT.toString()
             tvTotalAmount.text = DEFAULT_TOTAL_AMOUNT.toString()
             return
         }
+
         val baseAmount = etBase.text.toString().toDouble()
         val tipPercent = seekBarTip.progress
         val tipAmount  = baseAmount * tipPercent / 100
         val totalAmount = baseAmount + tipAmount
 
-
         tvTipAmount.text = "%.2f".format(tipAmount)
         tvTotalAmount.text = "%.2f".format(totalAmount)
 
-    }
-
-
-    override fun onWindowFocusChanged(hasFocus: Boolean) {
-        super.onWindowFocusChanged(hasFocus)
-        if (hasFocus) hideSystemUI()
-    }
-
-    private fun hideSystemUI() {
-        // Enables regular immersive mode.
-        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
-        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
-                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
     }
 }
