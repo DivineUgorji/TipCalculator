@@ -16,8 +16,9 @@ private const val DEFAULT_TIP_AMOUNT = 0.00
 private const val DEFAULT_SPLIT_AMOUNT = 0.00
 private const val INITIAL_TIP_VALUE = 2
 
-
 class MainActivity : AppCompatActivity() {
+    private var totalAmount: Double = 0.0
+    private var minimumValue: Int = 1
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
@@ -60,7 +61,9 @@ class MainActivity : AppCompatActivity() {
         })
 
         splitSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+           var progressChanged = minimumValue
             override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
+                progressChanged = minimumValue + progress
                 tvSplitSeekBar.text = "SPLIT BY $progress"
                 computeSplitResult()
             }
@@ -83,11 +86,14 @@ class MainActivity : AppCompatActivity() {
     }
 
       fun computeSplitResult() {
-        //val mySplit = splitSeekBar.progress
-        // val totalSplitResult = totalAmount / mySplit
+          if (etBase.text.isEmpty()){
+              tvSplitResult.text = DEFAULT_SPLIT_AMOUNT.toString()
+              return
+          }
+          val mySplit = splitSeekBar.progress
+         val totalSplitResult = totalAmount / mySplit
 
-        // tvSplitResult.text = "%.2f".format(totalSplitResult)
-
+          tvSplitResult.text = "%.2f".format(totalSplitResult)
 
     }
 
@@ -118,16 +124,10 @@ class MainActivity : AppCompatActivity() {
         val baseAmount = etBase.text.toString().toDouble()
         val tipPercent = seekBarTip.progress
         val tipAmount  = baseAmount * tipPercent / 100
-        val totalAmount = baseAmount + tipAmount
+         totalAmount = baseAmount + tipAmount
 
         tvTipAmount.text = "%.2f".format(tipAmount)
         tvTotalAmount.text = "%.2f".format(totalAmount)
-
-         val mySplit = splitSeekBar.progress
-         val totalSplitResult = totalAmount / mySplit
-
-         tvSplitResult.text = "%.2f".format(totalSplitResult)
-
 
      }
 }
