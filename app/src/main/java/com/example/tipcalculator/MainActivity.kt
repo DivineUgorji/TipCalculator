@@ -61,9 +61,8 @@ class MainActivity : AppCompatActivity() {
         })
 
         splitSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-           var progressChanged = minimumValue
+          // var progressChanged = splitSeekBar
             override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
-                progressChanged = minimumValue + progress
                 tvSplitSeekBar.text = "SPLIT BY $progress"
                 computeSplitResult()
             }
@@ -91,10 +90,12 @@ class MainActivity : AppCompatActivity() {
               return
           }
           val mySplit = splitSeekBar.progress
-         val totalSplitResult = totalAmount / mySplit
-
+          if (mySplit < minimumValue){
+              val totalSplitResult = totalAmount / mySplit + 1
+              tvSplitResult.text = "%.2f".format(totalSplitResult)
+          }
+          val totalSplitResult = totalAmount / mySplit
           tvSplitResult.text = "%.2f".format(totalSplitResult)
-
     }
 
     private fun updateTipDescription(tipPercent: Int) {
