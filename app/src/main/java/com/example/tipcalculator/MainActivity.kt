@@ -4,10 +4,18 @@ import android.animation.ArgbEvaluator
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import android.view.View.inflate
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ColorStateListInflaterCompat.inflate
+import androidx.core.content.res.ComplexColorCompat.inflate
 import kotlinx.android.synthetic.main.activity_main.*
 
 private const val INITIAL_TIP_PERCENT = 15
@@ -15,10 +23,11 @@ private const val DEFAULT_TOTAL_AMOUNT = 0.00
 private const val DEFAULT_TIP_AMOUNT = 0.00
 private const val DEFAULT_SPLIT_AMOUNT = 0.00
 private const val INITIAL_TIP_VALUE = 2
+private const val DEFAULT_SPLIT_VALUE_AT_ZERO_POSITION = 1
 
 class MainActivity : AppCompatActivity() {
     private var totalAmount: Double = 0.0
-    private var minimumValue: Int = 1
+    private var minimumValue: Int = 0
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
@@ -37,6 +46,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
 
         seekBarTip.progress = INITIAL_TIP_PERCENT
@@ -82,6 +92,10 @@ class MainActivity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         })
 
+       // switch_button.setOnClickListener(View.OnClickListener {
+
+       // })
+
     }
 
       fun computeSplitResult() {
@@ -89,9 +103,11 @@ class MainActivity : AppCompatActivity() {
               tvSplitResult.text = DEFAULT_SPLIT_AMOUNT.toString()
               return
           }
-          val mySplit = splitSeekBar.progress
-          if (mySplit < minimumValue){
-              val totalSplitResult = totalAmount / mySplit + 1
+          var mySplit = splitSeekBar.progress
+          if (mySplit == minimumValue){
+              tvSplitResult.text = DEFAULT_SPLIT_VALUE_AT_ZERO_POSITION.toString()
+              mySplit = DEFAULT_SPLIT_VALUE_AT_ZERO_POSITION
+              val totalSplitResult = totalAmount / mySplit
               tvSplitResult.text = "%.2f".format(totalSplitResult)
           }
           val totalSplitResult = totalAmount / mySplit
@@ -131,4 +147,19 @@ class MainActivity : AppCompatActivity() {
         tvTotalAmount.text = "%.2f".format(totalAmount)
 
      }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.nav_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.dark_mode_switch ->
+               // Toast.makeText(this, "Dark mode activated", Toast.LENGTH_SHORT).show()
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }

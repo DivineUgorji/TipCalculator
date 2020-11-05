@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/background_main"
     tools:context=".MainActivity">
 
 
@@ -90,7 +91,7 @@
         android:fontFamily="@font/roboto_mono"
         android:text="ENTER BILL AMOUNT"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="	#4c048c"
+        android:textColor="@color/custom_text_color"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/etBase"
         app:layout_constraintHorizontal_bias="0.587"
@@ -109,7 +110,7 @@
         android:foregroundGravity="center"
         android:gravity="center_horizontal|center_vertical"
         android:inputType="numberDecimal"
-        android:textColor="	#4c048c"
+        android:textColor="@color/custom_text_color"
         android:textColorHint="#FFFFFF"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -124,7 +125,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="268dp"
-        android:textColor="	#4c048c"
+        android:textColor="@color/custom_text_color"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/etBase"
@@ -150,7 +151,7 @@
         android:layout_marginEnd="4dp"
         android:text="TIP"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="	#4c048c"
+        android:textColor="@color/custom_text_color"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/tvTipPercent"
@@ -163,7 +164,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="	#4c048c"
+        android:textColor="@color/custom_text_color"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/tipLabel"
@@ -187,7 +188,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
-        android:textColor="	#4c048c"
+        android:textColor="@color/custom_text_color"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView3"
@@ -201,7 +202,7 @@
         android:layout_marginStart="13dp"
         android:layout_marginTop="40dp"
         android:text="PER PERSON"
-        android:textColor="	#4c048c"
+        android:textColor="@color/custom_text_color"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/tvSplitSeekBar"
@@ -216,7 +217,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
         android:text="SPLIT BY 5"
-        android:textColor="	#4c048c"
+        android:textColor="@color/custom_text_color"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/tipLabel"
@@ -236,6 +237,22 @@
         app:layout_constraintTop_toTopOf="@+id/tvSplitSeekBar"
         app:layout_constraintVertical_bias="0.0" />
 
+  <!--  <ImageButton
+        android:id="@+id/switch_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        android:gravity="center_horizontal|center_vertical"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/isettings_icon"
+        tools:src="@drawable/isettings_icon" />
+-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
