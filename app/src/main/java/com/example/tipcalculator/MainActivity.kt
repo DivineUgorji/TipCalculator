@@ -1,22 +1,19 @@
 package com.example.tipcalculator
 
 import android.animation.ArgbEvaluator
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
-import android.view.View.inflate
+
 import android.widget.SeekBar
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ColorStateListInflaterCompat.inflate
-import androidx.core.content.res.ComplexColorCompat.inflate
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 private const val INITIAL_TIP_PERCENT = 15
 private const val DEFAULT_TOTAL_AMOUNT = 0.00
@@ -71,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         splitSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-          // var progressChanged = splitSeekBar
+
             override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
                 tvSplitSeekBar.text = "SPLIT BY $progress"
                 computeSplitResult()
@@ -92,17 +89,43 @@ class MainActivity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         })
 
-       // switch_button.setOnClickListener(View.OnClickListener {
+        val appSettingPrefs: SharedPreferences = getSharedPreferences("AppSettingPrefs", 0)
+        val isNightMOdeOn: Boolean = appSettingPrefs.getBoolean("NightMode", false)
+        val sharedPrefsEdit: SharedPreferences.Editor = appSettingPrefs.edit()
 
-       // })
+        if (isNightMOdeOn){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            switchDarkMode.text = "Disable Dark Mode"
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            switchDarkMode.text = "Enable Dark Mode"
+        }
 
+        val switch: SwitchCompat = findViewById(R.id.switchDarkMode)
+       switch.setOnCheckedChangeListener { _, isChecked ->
+           // The toggle is enabled
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                sharedPrefsEdit.putBoolean("NightMode", true)
+                switchDarkMode.text = "Disable Dark Mode"
+                sharedPrefsEdit.apply()
+
+            } else {
+                // The toggle is disabled
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                sharedPrefsEdit.putBoolean("NightMode", false)
+                switchDarkMode.text = "Enable Dark Mode"
+                sharedPrefsEdit.apply()
+            }
+        }
     }
 
-      fun computeSplitResult() {
+    fun computeSplitResult() {
           if (etBase.text.isEmpty()){
               tvSplitResult.text = DEFAULT_SPLIT_AMOUNT.toString()
               return
           }
+
           var mySplit = splitSeekBar.progress
           if (mySplit == minimumValue){
               tvSplitResult.text = DEFAULT_SPLIT_VALUE_AT_ZERO_POSITION.toString()
@@ -110,6 +133,7 @@ class MainActivity : AppCompatActivity() {
               val totalSplitResult = totalAmount / mySplit
               tvSplitResult.text = "%.2f".format(totalSplitResult)
           }
+
           val totalSplitResult = totalAmount / mySplit
           tvSplitResult.text = "%.2f".format(totalSplitResult)
     }
@@ -147,19 +171,4 @@ class MainActivity : AppCompatActivity() {
         tvTotalAmount.text = "%.2f".format(totalAmount)
 
      }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.nav_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.dark_mode_switch ->
-               // Toast.makeText(this, "Dark mode activated", Toast.LENGTH_SHORT).show()
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-
-        }
-        return super.onOptionsItemSelected(item)
-    }
 }
