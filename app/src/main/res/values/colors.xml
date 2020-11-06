@@ -3,7 +3,7 @@
 
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorAccent">#dbb8ff</color>
     <color name="worstTip">@android:color/holo_red_dark</color>
     <color name="bestTip">@android:color/holo_green_dark</color>
     <color name="et_design_color">#4c048c</color>
