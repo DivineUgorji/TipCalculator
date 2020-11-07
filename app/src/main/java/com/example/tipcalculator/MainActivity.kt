@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
 
 
         seekBarTip.progress = INITIAL_TIP_PERCENT
+        splitSeekBar.progress = INITIAL_TIP_VALUE
         tvTipPercent.text = "$INITIAL_TIP_PERCENT%"
         tvSplitSeekBar.text = "SPLIT BY $INITIAL_TIP_VALUE"
         updateTipDescription(INITIAL_TIP_PERCENT)
@@ -86,6 +87,15 @@ class MainActivity : AppCompatActivity() {
         etBase.addTextChangedListener(object: TextWatcher{
             override fun afterTextChanged(p0: Editable?) {
                 computeTipAndTotal()
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        })
+
+        tvTotalAmount.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+               computeSplitResult()
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
