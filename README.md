@@ -11,6 +11,9 @@ A basic tip calculator app that enables one to calculate tips for their bill nic
 * Split final amount among 1-15 people.
 * Remember your previous tip percent.
 * Round Up: The tip percentage updates in real time when you round up the total or per-person amount.
+
+
+# Snapshots
 ![tip-meee](https://user-images.githubusercontent.com/61253347/98447866-83e28100-2128-11eb-938d-78bc4a3fd495.png)
 
 
@@ -35,7 +38,7 @@ A basic tip calculator app that enables one to calculate tips for their bill nic
 > furnished to do so, subject to the following conditions:
 
 > The above copyright notice and this permission notice shall be included in all
-> copies or substantial portions of the Software.
+  copies or substantial portions of the Software.
 
 > THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 > IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
