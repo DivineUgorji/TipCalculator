@@ -2,11 +2,13 @@ package com.example.tipcalculator
 
 import android.animation.ArgbEvaluator
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-
+import android.view.Window
+import android.view.WindowManager
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -26,10 +28,6 @@ class MainActivity : AppCompatActivity() {
     private var totalAmount: Double = 0.0
     private var minimumValue: Int = 0
 
-    override fun onWindowFocusChanged(hasFocus: Boolean) {
-        super.onWindowFocusChanged(hasFocus)
-        if (hasFocus) hideSystemUI()
-    }
 
     private fun hideSystemUI() {
         // Enables regular immersive mode.
@@ -39,9 +37,15 @@ class MainActivity : AppCompatActivity() {
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
                 View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
     }
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) hideSystemUI()
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+       hideSystemUI()
         setContentView(R.layout.activity_main)
 
 
