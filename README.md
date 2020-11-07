@@ -1,5 +1,4 @@
 # TipCalculator
 A basic tip calculator app that enables one to calculate tips for their bill nicely and efficiently.
 
-#ScreenShots
-![tip-me](https://user-images.githubusercontent.com/61253347/98447559-10d80b00-2126-11eb-99a8-ff55fbc572bd.png)
+![tip-meee](https://user-images.githubusercontent.com/61253347/98447866-83e28100-2128-11eb-938d-78bc4a3fd495.png)
