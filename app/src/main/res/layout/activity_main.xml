@@ -164,8 +164,7 @@
         android:layout_marginStart="70dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/custom_text_color"
-        android:textSize="30sp"
-        android:textStyle="bold"
+        android:textSize="30sp"        android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/tipLabel"
         app:layout_constraintStart_toEndOf="@+id/tipLabel"
         tools:text="3.91" />
