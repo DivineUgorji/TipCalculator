@@ -21,6 +21,9 @@ efficiently and in the fewest key presses possible.
 # Demo
 ![tip](https://user-images.githubusercontent.com/61253347/98531502-b69f8d00-2280-11eb-8cb8-5dde2ecc421c.gif)
 
+# Installation 
+This project requires a minimum API level of 24. Clone the repository, build and run.
+
 
 
 # CREDITS
